@@ -43,7 +43,7 @@ class HabitListActivity : AppCompatActivity(), PredefinedHabitAdapter.Listener {
 
         val titles = listOf(
             "Пить воду", "Утренняя зарядка", "Чтение",
-            "Медитация", "Съесть одно яблоко", "Посетить спортзал"
+            "Медитация", "Съесть одно яблоко", "Посетить спортзал", "Заправить кровать"
         )
         val defaultDays = listOf("Пн","Вт","Ср","Чт","Пт","Сб","Вс")
         val template = titles.map { title ->

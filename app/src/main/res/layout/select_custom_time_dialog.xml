@@ -87,7 +87,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#8BC34A"
-        android:text="подтвердить"
+        android:text="Подтвердить"
         app:cornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"

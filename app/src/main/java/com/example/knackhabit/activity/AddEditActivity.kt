@@ -29,6 +29,22 @@ class AddEditActivity : AppCompatActivity(), EditHabitItemAdapter.Listener {
     // сохраняем последний список, чтобы по id найти HabitWithCompletion
     private var habitsList: List<HabitWithCompletion> = emptyList()
 
+    // текущий день недели в виде аббревиатуры ("Пн", "Вт" и т.д.)
+    private val todayAbbrev: String
+        get() {
+            val cal = Calendar.getInstance()
+            return when (cal.get(Calendar.DAY_OF_WEEK)) {
+                Calendar.MONDAY    -> "Пн"
+                Calendar.TUESDAY   -> "Вт"
+                Calendar.WEDNESDAY -> "Ср"
+                Calendar.THURSDAY  -> "Чт"
+                Calendar.FRIDAY    -> "Пт"
+                Calendar.SATURDAY  -> "Сб"
+                Calendar.SUNDAY    -> "Вс"
+                else               -> ""
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddEditHabitBinding.inflate(layoutInflater)
@@ -45,15 +61,17 @@ class AddEditActivity : AppCompatActivity(), EditHabitItemAdapter.Listener {
             }
         }
 
-        // установим дату для выборки
+        // установим дату для выборки в ViewModel
         val fmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         mainViewModel.setDate(fmt.format(Date()))
 
-        adapter = EditHabitItemAdapter(this)
+        // инициализируем адаптер, передаём "сегодня"
+        adapter = EditHabitItemAdapter(this, todayAbbrev)
         binding.rcView.layoutManager = LinearLayoutManager(this)
         binding.rcView.adapter = adapter
 
-        mainViewModel.scheduledHabitsToday.observe(this) { listWithCompletion ->
+        // подписываемся на все привычки с информацией о выполнении сегодня
+        mainViewModel.habitsToday.observe(this) { listWithCompletion ->
             habitsList = listWithCompletion
             adapter.submitList(listWithCompletion)
         }
@@ -84,6 +102,7 @@ class AddEditActivity : AppCompatActivity(), EditHabitItemAdapter.Listener {
 
     override fun onResume() {
         super.onResume()
+        // при возврате на экран обновляем дату в ViewModel
         val todayStr = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             .format(Date())
         mainViewModel.setDate(todayStr)
