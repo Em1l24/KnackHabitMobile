@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Нажмите +, чтобы добавить привычку"
+            android:text="Нажмите (+) чтобы добавить привычку"
             android:textColor="#545454"
             android:textSize="18sp" />
     </LinearLayout>
