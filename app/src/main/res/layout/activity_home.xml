@@ -38,7 +38,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
-        android:text="Привычки сегодня лучше, чем завтра"
+        android:text="Не откладывайте хорошие привычки на завтра – формируйте их сегодня"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

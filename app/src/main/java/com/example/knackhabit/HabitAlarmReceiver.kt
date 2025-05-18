@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.knackhabit.activity.HomeActivity
+import com.example.knackhabit.activity.AddEditActivity
 
 class HabitAlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
@@ -18,7 +18,7 @@ class HabitAlarmReceiver : BroadcastReceiver() {
         val pendingIntent = PendingIntent.getActivity(
             context,
             0,
-            Intent(context, HomeActivity::class.java)
+            Intent(context, AddEditActivity::class.java)
                 .apply { flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP },
             PendingIntent.FLAG_IMMUTABLE
         )
